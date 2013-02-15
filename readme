@@ -1,0 +1,10 @@
+The following modifications are major changes to migrate to 3d.
+1. networks/Mesh_3D.*
+2. routers/ThreeD_router.*
+3. routers/routing_algorithms_3d.*
+
+There is an example config file inside examples/pras/
+
+To run hotspot traffic (treating center node as hotspot), 
+
+./booksim examples/pras/3dmesh traffic=hotspot hotspot_percent=0.08
