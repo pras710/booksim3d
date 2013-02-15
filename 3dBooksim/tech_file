@@ -1,0 +1,32 @@
+wire_length   = 1.5 ;
+//Cw_cpl = 6.51E-14 
+Cw_cpl = 0.0000000000000651;
+//Cw_gnd = 0.0354E-15 * 1E3 ;
+Cw_gnd = 3.54E-14 ;
+Rw = 2000.0 ;
+MetalPitch = 0.0002 ;
+//LAMBDA = 0.065 / 2.0  ;
+LAMBDA = 0.0325  ;
+Cd     = 0.70E-15 ;
+Cg     = 1.20E-15 ;
+Cgdl   = 0.29E-15 ; 			       
+Cd_pwr = 0.70E-15 ;
+Cg_pwr = 1.26E-15 ;
+IoffN  = 10.0E-9 ;
+IoffP  =  5.0E-9 ;
+//IoffSRAM = 4 * 5.0E-9 ; 
+IoffSRAM = 2E-08 ; 
+R        = 1.2E3  ;
+Vdd    = 1.0;
+
+H_INVD2 = 8  ;
+W_INVD2  = 3  ;
+
+H_DFQD1 = 8  ;
+W_DFQD1  = 16 ;
+
+H_ND2D1 = 8 ;
+W_ND2D1  = 3 ;
+
+H_SRAM = 8  ;
+W_SRAM  = 6 ;

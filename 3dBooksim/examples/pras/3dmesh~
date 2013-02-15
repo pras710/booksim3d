@@ -1,0 +1,89 @@
+// $Id$
+
+// Copyright (c) 2007-2009, Trustees of The Leland Stanford Junior University
+// All rights reserved.
+// 
+// Redistribution and use in source and binary forms, with or without 
+// modification, are permitted provided that the following conditions are met:
+// 
+// Redistributions of source code must retain the above copyright notice, this 
+// list of conditions and the following disclaimer.
+// Redistributions in binary form must reproduce the above copyright notice, 
+// this list of conditions and the following disclaimer in the documentation 
+// and/or other materials provided with the distribution.
+// Neither the name of the Stanford University nor the names of its contributors
+// may be used to endorse or promote products derived from this software without
+// specific prior written permission.
+// 
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" 
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF 
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+// POSSIBILITY OF SUCH DAMAGE.
+
+//8X8 mesh with 20 flits per packet under injection mode
+//injection rate here is packet per cycle, NOT flit per cycle
+
+// Topology
+
+topology = mesh3d;
+k = 4;
+n = 4;
+layer = 4;
+// Routing
+router = dimde;
+routing_function = dor3d;//modified_odd_even3d;//odd_even3d;//dor3d
+
+// Flow control
+
+num_vcs     = 16;
+vc_buf_size = 32;
+
+wait_for_tail_credit = 0;
+
+// Router architecture
+
+//sw_alloc_arb_type = matrix;
+sw_alloc_arb_type = round_robin;
+vc_alloc_arb_type = round_robin;
+//vc_allocator = separable_output_first;
+vc_allocator = separable_input_first;
+sw_allocator = separable_input_first;
+hold_switch_for_packet = 1;
+
+//vc_allocator = select;
+//sw_allocator = select;
+alloc_iters  = 1;
+
+credit_delay   = 0;
+routing_delay  = 0;
+vc_alloc_delay = 0;
+
+input_speedup     = 1;
+output_speedup    = 1;
+internal_speedup  = 1.0;
+
+// Traffic
+
+traffic                =  uniform;
+const_flits_per_packet = 4;
+
+// Simulation
+batch_size = 1000;
+batch_count = 4;
+ 
+sample_period = 1000;
+warmup_periods = 3;
+max_samples = 20;
+latency_thres = 200.0;
+
+sim_type       = latency;//batch;//latency
+injection_rate = 0.07;
+//injection_rate_uses_flits = 1;
+injection_process=bernoulli;
